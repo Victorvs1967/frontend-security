@@ -1,20 +1,18 @@
-<div class="container">
-  <div>
-    <h1 class="header">Hello</h1>
-  </div>
-  <form class="signin-form">
+<mat-card class="mat-elevation-z4">
+  <mat-card-title>Hello</mat-card-title>
+  <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onSignin()">
     <span class="message" *ngIf="message">{{ message }}</span>
-    <mat-form-field appearance="outline" class="email">
-      <input matInput type="email" placeholder="Email" [formControl]="email" required>
-      <mat-error class="email-validator-message" *ngIf="email.invalid">An email required.</mat-error>
+    <mat-form-field class="email">
+      <input matInput type="email" placeholder="Email" formControlName="email" />
+      <mat-error class="email-validator-message" *ngIf="formGroup.controls['email'].errors">An email required.</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="password">
-      <input matInput type="password" class="signup" placeholder="password" [formControl]="password" required>
-      <mat-error class="password-validator-message" *ngIf="password.invalid">An password required.</mat-error>
+    <mat-form-field class="password">
+      <input matInput type="password" class="signup" placeholder="password" formControlName="password" />
+      <mat-error class="password-validator-message" *ngIf="formGroup.controls['password'].errors">An password required.</mat-error>
     </mat-form-field>
     <div class="btn-wrapper">
-      <button mat-raised-button class="signin" color="primary" [disabled]="email.invalid || password.invalid"  (click)="onSignin()">Login</button>
+      <button mat-raised-button class="signin" color="primary" [disabled]="formGroup.controls['email'].invalid || formGroup.controls['password'].invalid" type="submit">Login</button>
       <button mat-raised-button class="signup" (click)="onSignup()">Signup</button>
     </div>
   </form>
-</div>
+</mat-card>

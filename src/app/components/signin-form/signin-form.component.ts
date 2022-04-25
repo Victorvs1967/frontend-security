@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/service/http.service';
@@ -13,14 +13,16 @@ import { environment } from 'src/environments/environment';
 export class SigninFormComponent implements OnInit {
 
   message?: string;
+  formGroup?: FormGroup;
 
-  email = new FormControl('', [Validators.required]);
-  password = new FormControl('', [Validators.required]);
-
-  constructor(public dialog: MatDialog, public http: HttpService, private router: Router) {
+  constructor(public http: HttpService, private router: Router, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.formGroup = this.formBuilder.group({
+      email: [ '', [ Validators.required, Validators.email ] ],
+      password: [ '', [ Validators.required ] ]
+    });
   }
 
   onSignup() {
@@ -28,11 +30,15 @@ export class SigninFormComponent implements OnInit {
   }
 
   onSignin() {
-    this.http.signin(this.email.value, this.password.value).subscribe(data => {
-      this.email.reset();
-      this.password.reset();
-      this.router.navigate([environment.user]);
-    });
+    if (this.formGroup) {
+      this.http.signin(this.formGroup.controls['email'].value, this.formGroup.controls['password'].value).subscribe(data => {
+        if (this.formGroup) {
+          this.formGroup.controls['email'].reset();
+          this.formGroup.controls['password'].reset();
+          this.router.navigate([environment.user]);
+        }
+      });
+    }
   }
 
 }
