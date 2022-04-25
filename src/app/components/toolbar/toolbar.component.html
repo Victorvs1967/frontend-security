@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="menu-icon" aria-label="menu icon" routerLink="user">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <div class="spacer"></div>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="menu-icon favorite-icon" aria-label="heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="menu-icon" aria-label="login icon">
+    <mat-icon *ngIf="!isSignin()" routerLink="auth/login">login</mat-icon>
+    <mat-icon *ngIf="isSignin()" (click)="logout()">logout</mat-icon>
+  </button>
+</mat-toolbar>

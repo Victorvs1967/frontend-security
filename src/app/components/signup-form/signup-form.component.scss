@@ -1,0 +1,29 @@
+.container, .signin-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+button.signin, button.signup {
+  width: 100%;
+  border-radius: 18px;
+  padding: 0.25rem 0;
+  margin: 6px 4px;
+}
+.signin-form {
+  border: 1px solid;
+  padding: 6vh;
+  border-radius: 8px;
+}
+mat-form-field, .signin-form {
+  width: 45vw;
+}
+.message {
+  color: #f00;
+}

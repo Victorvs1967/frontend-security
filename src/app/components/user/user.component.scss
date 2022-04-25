@@ -1,0 +1,22 @@
+.layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+
+    li {
+      color: #f0f0f0;
+    }
+  }
+}
+

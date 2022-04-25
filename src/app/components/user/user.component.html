@@ -1,0 +1,13 @@
+<div class="layout">
+  <div>
+    <p class="text">SOME TEXT</p>
+    <button mat-raised-button class="button" (click)="onClick()">USER INFO</button>
+    <ul *ngIf="user">
+      <li>email: <strong>{{ user.email }}</strong></li>
+      <li>firsEmail: <strong>{{ user.firstName }}</strong></li>
+      <li>lastName: <strong>{{ user.lastName }}</strong></li>
+      <li>role: <strong>{{ user.role }}</strong></li>
+      <li>create date: <strong>{{ user.onCreate * 1000 | date }}</strong></li>
+    </ul>
+  </div>
+</div>

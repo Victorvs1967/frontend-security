@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <h1 class="header" *ngIf="isSignup">Welcome</h1>
+    <h1 class="header" *ngIf="!isSignup">Hello</h1>
+  </div>
+  <form class="signin-form">
+    <span class="message" *ngIf="message">{{ message }}</span>
+    <mat-form-field appearance="outline" class="email">
+      <input matInput type="email" placeholder="Email" [formControl]="email" required>
+      <mat-error class="email-validator-message" *ngIf="email.invalid && !isSignup">An email required.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="password">
+      <input matInput type="password" class="signup" placeholder="password" [formControl]="password" required>
+      <mat-error class="password-validator-message" *ngIf="password.invalid && !isSignup">An password required.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="email">
+      <input matInput type="text" placeholder="First name" [formControl]="firstName" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="password">
+      <input matInput type="text" class="signup" placeholder="Last name" [formControl]="lastName" required>
+    </mat-form-field>
+    <div class="btn-wrapper">
+      <button mat-raised-button class="signup" color="primary" [disabled]="email.invalid || password.invalid" (click)="onSignup($event)">Signup</button>
+      <button mat-raised-button class="signin" (click)="onSignin()">Login</button>
+    </div>
+  </form>
+</div>
